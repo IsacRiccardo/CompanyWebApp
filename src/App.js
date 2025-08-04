@@ -8,8 +8,8 @@ import {
 } from "@mui/material";
 
 import theme from './theme';
-import { Hero, History, Projects, Numbers, Contact } from './sections'; 
-
+import SectionFactory from './components/SectionFactory';
+import { sectionsConfig } from './config/sections';
 
 const scrollTo = (id) => {
   const element = document.getElementById(id);
@@ -51,13 +51,15 @@ const App = () => {
           </Toolbar>
         </AppBar>
 
-        {/* Page content */}
+        {/* Page content using Factory Pattern */}
         <Box sx={{ pt: 10 }}>
-          <Hero />
-          <History />
-          <Projects />
-          <Numbers />
-          <Contact />
+          {sectionsConfig.map((section, index) => (
+            <SectionFactory
+              key={section.content.id}
+              type={section.type}
+              content={section.content}
+            />
+          ))}
         </Box>
       </Box>
     </ThemeProvider>
