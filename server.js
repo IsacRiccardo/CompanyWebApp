@@ -8,6 +8,8 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Serve static files from the React build
 app.use(express.static(path.join(__dirname, 'build')));
 
 // Contact form endpoint
